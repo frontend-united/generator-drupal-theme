@@ -11,5 +11,9 @@ module.exports.askFor = function() {
       default: 'Aurora'
     }
   ];
-
 };
+
+module.exports.runCommands = function(Generator) {
+
+
+}

@@ -103,8 +103,6 @@ Generator.prototype.askForSubs = function() {
   else {
     done();
   }
-
-
 };
 
 Generator.prototype.askForAdvanced = function() {
@@ -176,7 +174,6 @@ Generator.prototype.askForAdvanced = function() {
 
 };
 
-
 Generator.prototype.drupal = function () {
   // Create our theme directory
   this.mkdir(this.projectSlug);
@@ -198,5 +195,13 @@ Generator.prototype.projectfiles = function () {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };
+
+Generator.prototype.baseTheme = function () {
+  // Run commands from base theme generators.
+  // Not sure if this will work, but let's try.
+  if (baseThemeConfig && typeof(baseThemeConfig.runCommands) === "function") {
+    baseThemeConfig.runCommands(this);
+  }
+}
 
 module.exports = Generator;
