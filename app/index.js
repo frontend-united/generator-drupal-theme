@@ -13,7 +13,7 @@ var baseThemeList = [
   { name: "No Base Theme", value: null },
   { name: "Zen", value: "zen"},
   { name: "Aurora", value: "aurora", file: "./Aurora.js" },
-  { name: "Omega 4.x", value: "omega", file: "./Aurora.js" },
+  { name: "Omega 4.x", value: "omega" },
   { name: "Mothership", value: "mothership"}
 ];
 
