@@ -1,0 +1,31 @@
+name = <%= projectName %>
+description =  <%= projectName %> theme.
+core = 7.x
+<% if (baseTheme) { %>base theme = <%= baseTheme %><% } %>
+
+; ========================================
+; Regions
+; ========================================
+
+regions[header]       = 'Header'
+regions[main_prefix]  = 'Main Region Prefix'
+regions[content]      = 'Main Region'
+regions[main_suffix]  = 'Main Region Suffix'
+regions[footer]       = 'Footer'
+
+; ========================================
+; Stylesheets
+; ========================================
+
+stylesheets[all][] = 'css/style.css'
+stylesheets[print][] = 'css/print.css'
+
+; ========================================
+; Scripts
+; ========================================
+
+; ========================================
+; Modernizr
+; ========================================
+
+modernizr[tests][] = css_boxsizing
