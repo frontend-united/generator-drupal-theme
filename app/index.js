@@ -25,6 +25,15 @@ var Generator = yeoman.generators.Base.extend({
     this.on('end', function () {
       if (!this.options['skip-install']) {
         this.installDependencies();
+        sh.run('bundle install --path .vendor/bundle');
+      }
+
+      //////////////////////////////
+      // If the --git flag is passed, initialize git and add for initial commit
+      //////////////////////////////
+      if (this.options['git']) {
+        sh.run('git init');
+        sh.run('git add . && git commit -m "Aurora Generation"');
       }
     });
   }
@@ -34,7 +43,7 @@ Generator.prototype.askForBase = function () {
   var done = this.async();
 
   // Have Yeoman greet the user.
-  this.log(yosay('Welcome to the marvelous DrupalTheme generator!'));
+  this.log(yosay('Welcome to the Drupal base theme generator!'));
 
   var prompts = [
     {
