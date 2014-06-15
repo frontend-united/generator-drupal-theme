@@ -254,12 +254,23 @@ DrupalThemeGenerator.prototype.drupal = function () {
   this.template('_template.php', 'template.php');
   this.template('_theme_settings.php', 'theme_settings.php');
 
+  // Compass settings file.
+  this.template('_config.rb', 'config.rb');
+  this.copy('Gemfile', 'Gemfile');
+
   // Sample JavaScript file.
   this.copy('script.js', this.jsDir + '/script.js');
 
   // Some config files we want to have.
   this.copy('editorconfig', '.editorconfig');
+  this.copy('gitignore', '.gitignore');
   this.copy('jshintrc', '.jshintrc');
+
+  // Keep all of our folders in git, in case we didn't put something in there.
+  var keep = [this.fontsDir, this.templateDir, this.sassDir, this.cssDir];
+  for (var i in keep) {
+    this.copy('gitkeep', keep[i] + '/.gitkeep');
+  }
 };
 
 DrupalThemeGenerator.prototype.extras = function() {
