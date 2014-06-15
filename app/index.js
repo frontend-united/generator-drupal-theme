@@ -26,6 +26,11 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.on('end', function () {
+      //////////////////////////////
+      // Move Yo Storage
+      //////////////////////////////
+      fs.renameSync('../.yo-rc.json', '.yo-rc.json');
+
       if (!this.options['skip-install']) {
         //sh.run('bundle install --path .vendor/bundle');
       }
@@ -236,6 +241,10 @@ DrupalThemeGenerator.prototype.drupal = function () {
 
   this.template('_theme.info', this.projectSlug + '.info');
   this.template('_template.php', 'template.php');
+
+
+  this.copy('editorconfig', '.editorconfig');
+  this.copy('jshintrc', '.jshintrc');
 };
 
 DrupalThemeGenerator.prototype.extras = function() {
@@ -244,11 +253,6 @@ DrupalThemeGenerator.prototype.extras = function() {
     this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}});
   }
 }
-
-DrupalThemeGenerator.prototype.projectfiles = function () {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
-};
 
 DrupalThemeGenerator.prototype.baseThemeSetup = function () {
   var baseThemeGenerator = this.baseThemeGenerator;
