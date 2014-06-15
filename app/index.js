@@ -32,7 +32,7 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
       fs.renameSync('../.yo-rc.json', '.yo-rc.json');
 
       if (!this.options['skip-install']) {
-        //sh.run('bundle install --path .vendor/bundle');
+        sh.run('bundle install --path .vendor/bundle');
       }
 
       //////////////////////////////
