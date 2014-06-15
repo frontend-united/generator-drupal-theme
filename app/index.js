@@ -144,6 +144,7 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
   this.sassDir = 'sass';
   this.cssDir = 'css';
   this.jsDir = 'js';
+  this.imgDir = 'imgDir';
   this.fontsDir = 'fonts';
   this.templateDir = 'tpl';
 
@@ -177,6 +178,13 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
     },
     {
       type: "input",
+      name: "imgDir",
+      message: "Images directory?",
+      default: this.imgDir,
+      when: onlyWhen
+    },
+    {
+      type: "input",
       name: "fontsDir",
       message: "Fonts directory?",
       default: this.jsDir,
@@ -198,6 +206,7 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
       this.sassDir = _s.slugify(props.sassDir);
       this.cssDir = _s.slugify(props.cssDir);
       this.jsDir = _s.slugify(props.jsDir);
+      this.imgDir = _s.slugify(props.imgDir);
       this.fontsDir = _s.slugify(props.fontsDir);
       this.templateDir = props.templateDir;
     }
@@ -205,6 +214,7 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
     this.config.set('sassDir', this.sassDir);
     this.config.set('cssDir', this.cssDir);
     this.config.set('jsDir', this.jsDir);
+    this.config.set('imgDir', this.imgDir);
     this.config.set('fontsDir', this.fontsDir);
     this.config.set('templateDir', this.templateDir);
 
@@ -239,10 +249,15 @@ DrupalThemeGenerator.prototype.drupal = function () {
   this.mkdir(this.fontsDir);
   this.mkdir(this.templateDir);
 
+  // General theme files.
   this.template('_theme.info', this.projectSlug + '.info');
   this.template('_template.php', 'template.php');
+  this.template('_theme_settings.php', 'theme_settings.php');
 
+  // Sample JavaScript file.
+  this.copy('script.js', this.jsDir + '/script.js');
 
+  // Some config files we want to have.
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };
