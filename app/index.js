@@ -234,7 +234,6 @@ Generator.prototype.drupal = function () {
 
 Generator.prototype.extras = function() {
   if (this.extraOptions.length >= 1) {
-
     // Call the extras generator.
     this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}});
   }

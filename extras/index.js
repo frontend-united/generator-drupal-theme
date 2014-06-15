@@ -49,8 +49,19 @@ DrupalThemeExtrasGenerator.prototype.askFor = function () {
 };
 
 DrupalThemeExtrasGenerator.prototype.addTheThings = function () {
-  
+  if (this.projectOptions.indexOf('Bower') > -1) {
+    this.template('_bower.json', 'bower.json');
+  }
 
+  if (this.projectOptions.indexOf('Gulp') > -1) {
+    this.template('_gulp.package.json', 'package.json');
+    this.template('Gulpfile.js', 'Gulpfile.js');
+  }
+
+  if (this.projectOptions.indexOf('Grunt') > -1) {
+      this.template('_grunt.package.json', 'package.json');
+      this.template('Gruntfile.js', 'Gruntfile.js');
+  }
 }
 
 module.exports = DrupalThemeExtrasGenerator;
