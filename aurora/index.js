@@ -52,3 +52,5 @@ DrupalThemeAuroraGenerator.prototype.doThings = function() {
       break;
   }
 }
+
+module.exports = DrupalThemeAuroraGenerator;
