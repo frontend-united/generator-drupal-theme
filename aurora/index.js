@@ -50,6 +50,29 @@ DrupalThemeAuroraGenerator.prototype.doThings = function() {
     case 'corona':
       this.directory('corona', 'sass');
       break;
+    case 'polaris':
+      this.directory('polaris', 'sass');
+      break;
+    case 'north':
+        this.copy('north/style.scss', 'sass/style.scss');
+
+        //////////////////////////////
+        // North Globals
+        //////////////////////////////
+        var globals = ['variables', 'functions', 'mixins', 'extends'];
+        for (var i in globals) {
+	  this.copy('north/all.scss', 'sass/partials/global/_' + globals[i] + '.scss');
+	  this.copy('gitkeep', 'sass/partials/global/' + globals[i] + '/.gitkeep');
+        }
+
+        //////////////////////////////
+        // North Keep
+        //////////////////////////////
+        var keep = ['sass/partials', 'sass/partials/components', 'sass/partials/layouts', 'sass/enhancements', 'sass/fallbacks'];
+        for (var i in keep) {
+          this.copy('gitkeep', '' + keep[i] + '/.gitkeep');
+        }
+        break;
   }
 }
 
