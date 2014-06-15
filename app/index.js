@@ -14,7 +14,8 @@ var baseThemeList = [
   { name: "Zen", value: "zen"},
   { name: "Aurora", value: "aurora", file: "./Aurora.js" },
   { name: "Omega 4.x", value: "omega" },
-  { name: "Mothership", value: "mothership"}
+  { name: "Mothership", value: "mothership"},
+  { name: "Custom", value: "CUSTOM"}
 ];
 
 
@@ -63,6 +64,14 @@ Generator.prototype.askForBase = function () {
       message: 'Which base theme would you like to use?',
       choices: baseThemeList,
       default: null,
+    },
+    {
+      type: 'string',
+      name: 'customBaseTheme',
+      message: 'What is the system name of the base theme?',
+      when: function( answers ) {
+        return (answers.baseTheme !== "CUSTOM");
+      }
     }
   ];
 
@@ -70,6 +79,11 @@ Generator.prototype.askForBase = function () {
     this.projectName = props.projectName;
     this.projectSlug = _s.slugify(props.projectName);
     this.baseTheme = props.baseTheme;
+
+    // We have a custom base theme, just set it.
+    if (this.baseTheme === "CUSTOM") {
+      this.baseTheme = props.customBaseTheme;
+    }
 
     this.config.set('projectName', this.projectName);
     this.config.set('projectSlug', this.projectSlug);
@@ -115,6 +129,7 @@ Generator.prototype.askForAdvanced = function() {
   this.sassDir = 'sass';
   this.cssDir = 'css';
   this.jsDir = 'js';
+  this.fontsDir = 'fonts';
   this.templateDir = 'tpl';
 
   this.prompt([
@@ -146,6 +161,13 @@ Generator.prototype.askForAdvanced = function() {
       when: onlyWhen
     },
     {
+      type: "input",
+      name: "fontsDir",
+      message: "Fonts directory?",
+      default: this.jsDir,
+      when: onlyWhen
+    },
+    {
       type: "list",
       name: "templateDir",
       message: "Template directory?",
@@ -161,12 +183,14 @@ Generator.prototype.askForAdvanced = function() {
       this.sassDir = _s.slugify(props.sassDir);
       this.cssDir = _s.slugify(props.cssDir);
       this.jsDir = _s.slugify(props.jsDir);
+      this.fontsDir = _s.slugify(props.fontsDir);
       this.templateDir = props.templateDir;
     }
 
     this.config.set('sassDir', this.sassDir);
     this.config.set('cssDir', this.cssDir);
-    this.config.set('jsDir', this.sassDir);
+    this.config.set('jsDir', this.jsDir);
+    this.config.set('fontsDir', this.fontsDir);
     this.config.set('templateDir', this.templateDir);
 
     done();
@@ -180,12 +204,15 @@ Generator.prototype.drupal = function () {
   // Set our destination to be the new directory.
   this.destinationRoot(this.projectSlug);
 
+  // Make all the directories we know that we will need.
   this.mkdir(this.sassDir);
   this.mkdir(this.cssDir);
   this.mkdir(this.jsDir);
+  this.mkdir(this.fontsDir);
   this.mkdir(this.templateDir);
 
   this.template('_theme.info', this.projectSlug + '.info');
+  this.template('_template.php', 'template.php');
 
   //this.copy('_package.json', 'package.json');
   //this.copy('_bower.json', 'bower.json');
@@ -197,9 +224,13 @@ Generator.prototype.projectfiles = function () {
 };
 
 Generator.prototype.baseTheme = function () {
+  var baseThemeConfig = this.baseThemeConfig;
+
   // Run commands from base theme generators.
   // Not sure if this will work, but let's try.
   if (baseThemeConfig && typeof(baseThemeConfig.runCommands) === "function") {
+    this.sourceRoot(this.baseTheme);
+    this.log(yosay('Running ' + this.baseTheme + ' specialized code.'));
     baseThemeConfig.runCommands(this);
   }
 }
