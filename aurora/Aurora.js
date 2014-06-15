@@ -13,13 +13,6 @@ module.exports.askFor = function() {
   ];
 };
 
-module.exports.runCommands = function(Generator) {
-  switch (Generator.auroraType) {
-    case 'aurora':
-      Generator.directory('aurora', 'sass');
-      break;
-    case 'corona':
-      Generator.directory('corona', 'sass');
-      break;
-  }
+module.exports.subGenerator = function() {
+  return "drupal-theme:aurora";
 }

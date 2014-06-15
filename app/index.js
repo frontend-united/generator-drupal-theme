@@ -14,14 +14,14 @@ var extras = require('../extras/extras.js');
 var baseThemeList = [
   { name: "No Base Theme", value: null },
   { name: "Zen", value: "zen"},
-  { name: "Aurora", value: "aurora", file: "./Aurora.js" },
+  { name: "Aurora", value: "aurora", file: "../aurora/Aurora.js", generator: "drupal-theme:aurora" },
   { name: "Omega 4.x", value: "omega" },
   { name: "Mothership", value: "mothership"},
   { name: "Custom", value: "CUSTOM"}
 ];
 
 
-var Generator = yeoman.generators.Base.extend({
+var DrupalThemeGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
 
@@ -41,7 +41,7 @@ var Generator = yeoman.generators.Base.extend({
   }
 });
 
-Generator.prototype.askForBase = function () {
+DrupalThemeGenerator.prototype.askForBase = function () {
   var done = this.async();
 
   // Have Yeoman greet the user.
@@ -94,16 +94,25 @@ Generator.prototype.askForBase = function () {
   }.bind(this));
 };
 
-Generator.prototype.askForSubs = function() {
+DrupalThemeGenerator.prototype.askForSubs = function() {
   var done = this.async();
   var baseTheme = this.baseTheme;
   var baseThemeConfig = null;
+  var baseThemeGenerator = false;
 
   baseThemeList.forEach( function(element, index, array) {
-    if (element.value == baseTheme && element.file != undefined) {
-      baseThemeConfig = require(element.file);
+    if (element.value == baseTheme) {
+      if (element.file != undefined) {
+        baseThemeConfig = require(element.file);
+      }
+
+      if (element.generator != undefined) {
+        baseThemeGenerator = element.generator;
+      }
     }
   });
+
+  this.baseThemeGenerator = baseThemeGenerator;
 
   // We do not want to try and get more options if they do not exist.
   if (baseThemeConfig !== null) {
@@ -120,7 +129,7 @@ Generator.prototype.askForSubs = function() {
   }
 };
 
-Generator.prototype.askForAdvanced = function() {
+DrupalThemeGenerator.prototype.askForAdvanced = function() {
   var done = this.async();
   var onlyWhen = function( answers ) {
     return answers.advFileOptions;
@@ -198,7 +207,7 @@ Generator.prototype.askForAdvanced = function() {
   }.bind(this));
 };
 
-Generator.prototype.askForExtras = function() {
+DrupalThemeGenerator.prototype.askForExtras = function() {
   var done = this.async();
 
   var prompts = extras.askFor();
@@ -212,7 +221,7 @@ Generator.prototype.askForExtras = function() {
 
 };
 
-Generator.prototype.drupal = function () {
+DrupalThemeGenerator.prototype.drupal = function () {
   // Create our theme directory
   this.mkdir(this.projectSlug);
   // Set our destination to be the new directory.
@@ -227,33 +236,28 @@ Generator.prototype.drupal = function () {
 
   this.template('_theme.info', this.projectSlug + '.info');
   this.template('_template.php', 'template.php');
-
-  //this.copy('_package.json', 'package.json');
-  //this.copy('_bower.json', 'bower.json');
 };
 
-Generator.prototype.extras = function() {
+DrupalThemeGenerator.prototype.extras = function() {
   if (this.extraOptions.length >= 1) {
     // Call the extras generator.
     this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}});
   }
 }
 
-Generator.prototype.projectfiles = function () {
+DrupalThemeGenerator.prototype.projectfiles = function () {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };
 
-Generator.prototype.baseTheme = function () {
-  var baseThemeConfig = this.baseThemeConfig;
+DrupalThemeGenerator.prototype.baseThemeSetup = function () {
+  var baseThemeGenerator = this.baseThemeGenerator;
 
   // Run commands from base theme generators.
-  // Not sure if this will work, but let's try.
-  if (baseThemeConfig && typeof(baseThemeConfig.runCommands) === "function") {
-    this.sourceRoot(this.baseTheme);
-    this.log(yosay('Running ' + this.baseTheme + ' specialized code.'));
-    baseThemeConfig.runCommands(this);
+  if (baseThemeGenerator) {
+    // Call the base theme generator.
+    this.invoke(baseThemeGenerator, {options: {nested: true}});
   }
 }
 
-module.exports = Generator;
+module.exports = DrupalThemeGenerator;
