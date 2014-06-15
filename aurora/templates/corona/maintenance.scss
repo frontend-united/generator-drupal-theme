@@ -1,0 +1,28 @@
+////////////////////////
+// Maintenance Page File
+//
+// This file gets turned into maintenance.css.
+// We keep is separate so that you may have custom CSS on the maintenance
+//  page if you so wish, and not include your full site's css.
+////////////////////////
+
+////////////////////////
+// Configuration, no CSS output.
+//   variables
+//   mixins
+//   functions
+//   compass extensions
+////////////////////////
+@import 'config/config';
+
+
+// Code specifically for the maintenance page.
+
+.maintenance-page {
+
+  // Specifically if the db cannot be reached.
+  &.db-offline {
+
+  }
+
+}

@@ -1,0 +1,32 @@
+////////////////////////
+//
+// Color variables.
+//
+////////////////////////
+
+$white          : #FFFFFF;
+$black          : #000000;
+
+// Standard colors: for standard 4K and other brand colors.
+// Note: these are just for reference, and some brands have multiple colors.
+$brand-colors: (
+  facebook    : #3B5998,
+  twitter     : #33CCFF,
+  youtube     : #FF3333,
+  pinterest   : #990000,
+  skype       : #12A5F4,
+  flickr      : #FE0883,
+  foursquare  : #8FD400,
+  instagram   : #4E433C,
+  linkedin    : #4875B4,
+  tumblr      : #2B4964,
+  vimeo       : #86B32D,
+  google      : #D6492C,
+  fk          : #66B360,
+);
+
+// Base color variables.
+$link           : #2090B4;
+$visited        : $link;
+$selection-bg   : #66B360;
+$selection      : $white;

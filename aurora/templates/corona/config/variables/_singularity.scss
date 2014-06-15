@@ -1,0 +1,26 @@
+////////////////////////
+//
+// Singularity variables.
+//
+// Singularity allows the creation of responsive grids within your site's layout
+// Go to the singularity github wiki for full implementation, and how to
+// integrate it with breakpoint as well.
+//
+// @see https://github.com/Team-Sass/Singularity/wiki
+//
+////////////////////////
+
+@include sgs-change('mobile first',       true);
+@include sgs-change('include border box', false);
+@include sgs-change('include clearfix',   false);
+// Enable this if you want rtl support.
+//@include sgs-change('direction',          'both');
+
+// Define our grids
+@include add-grid(12);
+// @include add-grid(4 at 500px);
+// @include add-grid(8 3 at 800px);
+
+// Define our gutters.
+@include add-gutter(1/3);
+//@include add-gutter(1/4 at 800px);

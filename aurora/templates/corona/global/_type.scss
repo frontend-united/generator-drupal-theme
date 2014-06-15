@@ -1,0 +1,113 @@
+/**
+* Typography: Headings, body text, lists, code, and more for a versatile and durable typography system.
+*/
+
+body {
+  font-family: $font-body;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+
+// Headings
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}
+
+
+// Links
+//
+// The order of link states are based on Eric Meyer's article:
+// http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
+a {
+
+  &:link {
+    color: $link;
+  }
+
+  &:visited {
+    color: $visited;
+  }
+
+  &:hover, &:focus {
+
+  }
+
+  &:active, &.active {
+
+  }
+}
+
+
+// Lists
+
+ul, ol {
+
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+ul {
+
+}
+
+ol {
+
+}
+
+li {
+
+}
+
+ul.unstyled,
+ol.unstyled {
+
+}
+
+// Misc.
+
+hr {
+  height: 1px;
+  border: 1px solid #666;
+  padding-bottom: -1px;
+  margin: 1em 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+// Remove text-shadow in selection highlight: h5bp.com/i
+// These selection declarations have to be separate
+::-moz-selection { background: $selection-bg; color: $selection; text-shadow: none; }
+::selection { background: $selection-bg; color: $selection; text-shadow: none; }

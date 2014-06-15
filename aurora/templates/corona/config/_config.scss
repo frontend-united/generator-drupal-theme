@@ -1,0 +1,32 @@
+// Base Partials
+//
+// These files will be shared across all three of your output CSS files.
+// Generally included here are only Compass Extension imports and imports
+// for variables, functions, mixins, and extendables.
+
+// A few default variables we want to set BEFORE we import compass.
+//
+// Why? Well, compass will override these. And to make sure that we can override
+// them later for our IE stylesheets, we need to declare them now.
+$graceful-usage-threshold:    1         !default;
+$critical-usage-threshold:    0.1       !default;
+$browser-minimum-versions:    (ie: '9') !default;
+
+// Compass Extensions
+//
+// Put an extra compass extensions here. Aurora already puts in respond-to,
+// susy, toolkit, breakpoint, sassy-buttons, and compass-normalize
+
+@import 'compass';
+@import 'breakpoint';
+@import 'singularitygs';
+@import 'toolkit';
+
+// Private Imports
+//
+// Any other imports to add. Normally, these do not include any css, but just
+// functions, variables, etc. to be used by other files.
+
+@import "functions";
+@import "mixins";
+@import "variables";

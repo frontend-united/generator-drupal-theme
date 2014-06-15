@@ -1,0 +1,41 @@
+////////////////////////
+// Style File
+//
+// This file gets turned into style.css. This file should really
+//  hold nothing except for imports of your base, layout, and design
+//  partials.
+////////////////////////
+
+////////////////////////
+// Configuration, no CSS output.
+//   variables
+//   mixins
+//   functions
+//   compass extensions
+////////////////////////
+@import 'config/config';
+
+////////////////////////
+// Import global elements
+////////////////////////
+@import 'global/_normalize.css.scss';
+@import 'global/extendables';
+@import 'global/type';
+@import 'global/forms';
+
+////////////////////////
+// Import layouts
+////////////////////////
+//@import 'layout/header';
+//@import 'layout/panel-page-x';
+
+////////////////////////
+// Import compontents
+////////////////////////
+//@import 'components/tabs';
+//@import 'components/button';
+
+////////////////////////
+// Import print
+////////////////////////
+@import 'print';

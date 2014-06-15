@@ -1,0 +1,22 @@
+////////////////////////
+//
+// Breakpoint variables.
+//
+// Breakpoint allows us to embed media queries directly into each rule that
+// needs it, rather than forcing a developer to place rules for a single
+// component in multiple places depending on the media query they want to
+// affect.
+//
+// @see https://github.com/Team-Sass/breakpoint/wiki
+//
+// Listed here are named breakpoints. They can vary in complexity, allowing you to
+// get rid of the cognitive load behind typing and remembering media queries.
+//
+// @see https://github.com/Team-Sass/breakpoint/wiki/Respond-To
+//
+////////////////////////
+
+$breakpoint-no-query-fallbacks: true;
+$breakpoint-to-ems: true;
+
+//$breakpoints: add-breakpoint('sample breakpoint', 800px);
