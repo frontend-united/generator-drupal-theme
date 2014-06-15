@@ -1,4 +1,4 @@
-# generator-drupal-theme [![Build Status](https://secure.travis-ci.org/iamcarrico/generator-drupal-theme.png?branch=master)](https://travis-ci.org/iamcarrico/generator-drupal-theme)
+# Drupal Theme Generator [![Build Status](https://secure.travis-ci.org/iamcarrico/generator-drupal-theme.png?branch=master)](https://travis-ci.org/iamcarrico/generator-drupal-theme)
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -34,6 +34,10 @@ Finally, initiate the generator:
 ```bash
 $ yo drupal-theme
 ```
+
+### Creating a Sub Theme
+
+This Yeoman generator allows you to create a sub-theme of any Drupal base theme. When you initiate the generator, it will ask you which Drupal base theme you would like to use. There are several packed with this, some of which will give you their own special code when you create a sub-theme. You can also specify any other base theme of your choice, by selecting "custom".
 
 ### Getting To Know Yeoman
 
