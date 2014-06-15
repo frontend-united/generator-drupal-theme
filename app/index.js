@@ -45,7 +45,7 @@ DrupalThemeGenerator.prototype.askForBase = function () {
   var done = this.async();
 
   // Have Yeoman greet the user.
-  this.log(yosay('Welcome to the Drupal base theme generator!'));
+  this.log(yosay('Welcome to the Drupal theme generator!'));
 
   var prompts = [
     {

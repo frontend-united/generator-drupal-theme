@@ -12,7 +12,3 @@ module.exports.askFor = function() {
     }
   ];
 };
-
-module.exports.subGenerator = function() {
-  return "drupal-theme:aurora";
-}
