@@ -1,0 +1,9 @@
+Description:
+    Creates a Drupal sub-theme, with optional base themes.
+
+Example:
+    yo drupal-theme [--skip-install] [--git]
+
+    This will create:
+        theme.info
+        template.php

@@ -8,6 +8,8 @@ var sh = require('execSync');
 var _s = require('underscore.string');
 var fs = require('fs');
 
+var extras = require('../extras/extras.js');
+
 // Here, we add in extra prompts and settings from our base themes.
 var baseThemeList = [
   { name: "No Base Theme", value: null },
@@ -25,8 +27,7 @@ var Generator = yeoman.generators.Base.extend({
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
-        this.installDependencies();
-        sh.run('bundle install --path .vendor/bundle');
+        //sh.run('bundle install --path .vendor/bundle');
       }
 
       //////////////////////////////
@@ -70,7 +71,7 @@ Generator.prototype.askForBase = function () {
       name: 'customBaseTheme',
       message: 'What is the system name of the base theme?',
       when: function( answers ) {
-        return (answers.baseTheme !== "CUSTOM");
+        return (answers.baseTheme === "CUSTOM");
       }
     }
   ];
@@ -195,6 +196,19 @@ Generator.prototype.askForAdvanced = function() {
 
     done();
   }.bind(this));
+};
+
+Generator.prototype.askForExtras = function() {
+  var done = this.async();
+
+  var prompts = extras.askFor();
+
+  this.prompt(prompts, function (props) {
+    this.extraOptions = props.extraOptions;
+
+    done();
+
+  }.bind(this));
 
 };
 
@@ -217,6 +231,14 @@ Generator.prototype.drupal = function () {
   //this.copy('_package.json', 'package.json');
   //this.copy('_bower.json', 'bower.json');
 };
+
+Generator.prototype.extras = function() {
+  if (this.extraOptions.length >= 1) {
+
+    // Call the extras generator.
+    this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}});
+  }
+}
 
 Generator.prototype.projectfiles = function () {
   this.copy('editorconfig', '.editorconfig');
