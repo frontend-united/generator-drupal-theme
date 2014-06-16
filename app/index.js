@@ -144,7 +144,7 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
   this.sassDir = 'sass';
   this.cssDir = 'css';
   this.jsDir = 'js';
-  this.imgDir = 'imgDir';
+  this.imgDir = 'img';
   this.fontsDir = 'fonts';
   this.templateDir = 'tpl';
 
@@ -246,6 +246,7 @@ DrupalThemeGenerator.prototype.drupal = function () {
   this.mkdir(this.sassDir);
   this.mkdir(this.cssDir);
   this.mkdir(this.jsDir);
+  this.mkdir(this.imgDir);
   this.mkdir(this.fontsDir);
   this.mkdir(this.templateDir);
 
@@ -268,7 +269,7 @@ DrupalThemeGenerator.prototype.drupal = function () {
   this.copy('jshintrc', '.jshintrc');
 
   // Keep all of our folders in git, in case we didn't put something in there.
-  var keep = [this.fontsDir, this.templateDir, this.sassDir, this.cssDir];
+  var keep = [this.fontsDir, this.templateDir, this.sassDir, this.cssDir, this.imgDir];
   for (var i in keep) {
     this.copy('gitkeep', keep[i] + '/.gitkeep');
   }
@@ -289,7 +290,7 @@ DrupalThemeGenerator.prototype.baseThemeSetup = function () {
   // Run commands from base theme generators.
   if (baseThemeGenerator) {
     var cb = this.async();
-    
+
     // Call the base theme generator.
     this.invoke(baseThemeGenerator, {options: {nested: true}}, cb);
   }
