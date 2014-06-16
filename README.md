@@ -1,4 +1,4 @@
-# Drupal Theme Generator [![Build Status](https://secure.travis-ci.org/iamcarrico/generator-drupal-theme.png?branch=master)](https://travis-ci.org/iamcarrico/generator-drupal-theme)
+# Drupal Theme Generator [![Build Status](https://secure.travis-ci.org/frontend-united/generator-drupal-theme.png?branch=master)](https://travis-ci.org/frontend-united/generator-drupal-theme)
 
 > [Yeoman](http://yeoman.io) generator
 
