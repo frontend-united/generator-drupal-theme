@@ -43,6 +43,10 @@ DrupalThemeAuroraGenerator.prototype.askFor = function () {
 };
 
 DrupalThemeAuroraGenerator.prototype.doThings = function() {
+
+  // Copy the compass config, complete with templating.
+  this.template('_config.rb', 'config.rb');
+  
   switch (this.auroraType) {
     case 'aurora':
       this.directory('aurora', 'sass');
