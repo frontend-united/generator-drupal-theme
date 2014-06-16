@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-
+var rimraf = require('rimraf');
+var path = require('path');
 
 var DrupalThemeZenGenerator = yeoman.generators.Base.extend({
   init: function () {
@@ -27,13 +28,15 @@ DrupalThemeZenGenerator.prototype.askFor = function () {
   }
   else {
 
-    // We need to make sure we do this in the right folder. 
+    // We need to make sure we do this in the right folder.
     this.destinationRoot(this.projectSlug);
     cb();
   }
 };
 
 DrupalThemeZenGenerator.prototype.doThings = function() {
+  var cb = this.async();
+  var self = this;
 
   // Copy all general directories.
   this.directory('sass', 'sass');
@@ -47,8 +50,12 @@ DrupalThemeZenGenerator.prototype.doThings = function() {
   this.copy('screenshot.png', 'screenshot.png');
 
   // Copy the compass config, complete with templating.
-  this.template('_config.rb', 'config.rb');
-
+  // But first we must remove what is already there.
+  var filepath = path.join(this.destinationRoot() + '/config.rb');
+  rimraf(filepath, function (err) {
+    self.template('_config.rb', 'config.rb');
+    cb();
+  });
 }
 
 module.exports = DrupalThemeZenGenerator;

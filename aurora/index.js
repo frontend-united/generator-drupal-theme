@@ -1,5 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var rimraf = require('rimraf');
+var path = require('path');
 
 var aurora = require('./Aurora.js');
 
@@ -43,10 +45,17 @@ DrupalThemeAuroraGenerator.prototype.askFor = function () {
 };
 
 DrupalThemeAuroraGenerator.prototype.doThings = function() {
+  var cb = this.async();
+  var self = this;
 
   // Copy the compass config, complete with templating.
-  this.template('_config.rb', 'config.rb');
-  
+  // But first we must remove what is already there.
+  var filepath = path.join(this.destinationRoot() + '/config.rb');
+  rimraf(filepath, function (err) {
+    self.template('_config.rb', 'config.rb');
+    cb();
+  });
+
   switch (this.auroraType) {
     case 'aurora':
       this.directory('aurora', 'sass');
