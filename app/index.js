@@ -276,8 +276,10 @@ DrupalThemeGenerator.prototype.drupal = function () {
 
 DrupalThemeGenerator.prototype.extras = function() {
   if (this.extraOptions.length >= 1) {
+    var cb = this.async();
+
     // Call the extras generator.
-    this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}});
+    this.invoke("drupal-theme:extras", {options: {nested: true, extraOptions: this.extraOptions}}, cb);
   }
 }
 
@@ -286,8 +288,10 @@ DrupalThemeGenerator.prototype.baseThemeSetup = function () {
 
   // Run commands from base theme generators.
   if (baseThemeGenerator) {
+    var cb = this.async();
+    
     // Call the base theme generator.
-    this.invoke(baseThemeGenerator, {options: {nested: true}});
+    this.invoke(baseThemeGenerator, {options: {nested: true}}, cb);
   }
 }
 
