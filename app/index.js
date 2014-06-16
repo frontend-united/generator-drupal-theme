@@ -31,6 +31,12 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       fs.renameSync('../.yo-rc.json', '.yo-rc.json');
 
+      //////////////////////////////
+      // If the --skip-install flag is NOT passed, install our bundler
+      // dependencies.
+      // NOTE: This happens in a local folder because there is less of a chance
+      //       of it breaking there.
+      //////////////////////////////
       if (!this.options['skip-install']) {
         sh.run('bundle install --path .vendor/bundle');
       }
