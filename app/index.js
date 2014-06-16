@@ -55,8 +55,16 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
 DrupalThemeGenerator.prototype.askForBase = function () {
   var cb = this.async();
 
-  // Have Yeoman greet the user.
-  this.log(yosay('Welcome to the Drupal theme generator!'));
+  if (!this.options['skip-welcome-message']) {
+
+    // Have Yeoman greet the user.
+    this.log(yosay('Welcome to the Drupal theme generator!'));
+    this.log(
+      chalk.green(
+        'With this you can create the scaffolding for your own Drupal theme. This also has custom code to create starter kits from several major base themes. ' + '\n'
+      )
+    );
+  }
 
   var prompts = [
     {

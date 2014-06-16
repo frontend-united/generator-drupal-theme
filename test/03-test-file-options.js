@@ -46,6 +46,7 @@ describe('Custom base theme with custom paths', function () {
       'extraOptions': []
     });
     this.app.options['skip-install'] = true;
+    this.app.options['skip-welcome-message'] = true;
     this.app.run({}, function () {
       helpers.assertFile(expected);
       done();
