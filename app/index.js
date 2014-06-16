@@ -13,7 +13,7 @@ var extras = require('../extras/extras.js');
 // Here, we add in extra prompts and settings from our base themes.
 var baseThemeList = [
   { name: "No Base Theme", value: null },
-  { name: "Zen", value: "zen"},
+  { name: "Zen", value: "zen", generator: "drupal-theme:zen"},
   { name: "Aurora", value: "aurora", file: "../aurora/Aurora.js", generator: "drupal-theme:aurora" },
   { name: "Omega 4.x", value: "omega" },
   { name: "Mothership", value: "mothership"},
