@@ -47,7 +47,7 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
 });
 
 DrupalThemeGenerator.prototype.askForBase = function () {
-  var done = this.async();
+  var cb = this.async();
 
   // Have Yeoman greet the user.
   this.log(yosay('Welcome to the Drupal theme generator!'));
@@ -95,12 +95,12 @@ DrupalThemeGenerator.prototype.askForBase = function () {
     this.config.set('projectSlug', this.projectSlug);
     this.config.set('baseTheme', this.baseTheme);
 
-    done();
+    cb();
   }.bind(this));
 };
 
 DrupalThemeGenerator.prototype.askForSubs = function() {
-  var done = this.async();
+  var cb = this.async();
   var baseTheme = this.baseTheme;
   var baseThemeConfig = null;
   var baseThemeGenerator = false;
@@ -126,16 +126,16 @@ DrupalThemeGenerator.prototype.askForSubs = function() {
       this.baseThemeSettings = props;
       this.config.set('baseThemeSettings', this.baseThemeSettings);
 
-      done();
+      cb();
     }.bind(this));
   }
   else {
-    done();
+    cb();
   }
 };
 
 DrupalThemeGenerator.prototype.askForAdvanced = function() {
-  var done = this.async();
+  var cb = this.async();
   var onlyWhen = function( answers ) {
     return answers.advFileOptions;
   }
@@ -218,19 +218,19 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
     this.config.set('fontsDir', this.fontsDir);
     this.config.set('templateDir', this.templateDir);
 
-    done();
+    cb();
   }.bind(this));
 };
 
 DrupalThemeGenerator.prototype.askForExtras = function() {
-  var done = this.async();
+  var cb = this.async();
 
   var prompts = extras.askFor();
 
   this.prompt(prompts, function (props) {
     this.extraOptions = props.extraOptions;
 
-    done();
+    cb();
 
   }.bind(this));
 
