@@ -286,6 +286,7 @@ DrupalThemeGenerator.prototype.drupal = function () {
 
   // Some config files we want to have.
   this.copy('editorconfig', '.editorconfig');
+  this.copy('ruby_version', '.ruby_version');
   this.copy('gitignore', '.gitignore');
   this.copy('jshintrc', '.jshintrc');
 
