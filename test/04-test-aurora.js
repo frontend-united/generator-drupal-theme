@@ -27,7 +27,9 @@ describe('Aurora theme (Corona distribution)', function () {
       // We don't want to test all files, but important ones.
       'sass/config/_config.scss',
       'sass/global/_normalize.css.scss',
-      'sass/config/variables/_colors.scss'
+      'sass/config/variables/_colors.scss',
+      // Confirmation that compass ran successfully
+      'css/style.css'
     ];
 
     helpers.mockPrompt(this.app, {
@@ -37,7 +39,7 @@ describe('Aurora theme (Corona distribution)', function () {
       'advFileOptions': false,
       'extraOptions': []
     });
-    this.app.options['skip-install'] = true;
+    //this.app.options['skip-install'] = true;
     this.app.options['skip-welcome-message'] = true;
     this.app.run({}, function () {
       helpers.assertFile(expected);
