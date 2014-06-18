@@ -48,14 +48,6 @@ DrupalThemeAuroraGenerator.prototype.doThings = function() {
   var cb = this.async();
   var self = this;
 
-  // Copy the compass config, complete with templating.
-  // But first we must remove what is already there.
-  var filepath = path.join(this.destinationRoot() + '/config.rb');
-  rimraf(filepath, function (err) {
-    self.template('_config.rb', 'config.rb');
-    cb();
-  });
-
   switch (this.auroraType) {
     case 'aurora':
       this.directory('aurora', 'sass');
@@ -87,6 +79,19 @@ DrupalThemeAuroraGenerator.prototype.doThings = function() {
         }
         break;
   }
+
+  // Copy the compass config, complete with templating.
+  // But first we must remove what is already there.
+  var configpath = path.join(this.destinationRoot() + '/config.rb');
+  var gemfilepath = path.join(this.destinationRoot() + '/Gemfile');
+  rimraf(configpath, function (err) {
+    self.template('_config.rb', 'config.rb');
+
+    rimraf(gemfilepath, function (err) {
+      self.copy('Gemfile', 'Gemfile');
+      cb();
+    });
+  });
 }
 
 module.exports = DrupalThemeAuroraGenerator;
