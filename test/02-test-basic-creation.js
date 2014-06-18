@@ -21,7 +21,7 @@ describe('Basic drupal theme (no base theme)', function () {
   it('creates expected files', function (done) {
     var expected = [
       // add files you expect to exist here.
-      'tester-apples.info',
+      'tester_apples.info',
       'template.php',
       '.jshintrc',
       'favicon.ico',
@@ -30,7 +30,7 @@ describe('Basic drupal theme (no base theme)', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'projectName': 'TeStEr  Apples',
+      'projectName': 'Tester  Apples',
       'baseTheme': null,
       'advFileOptions': false,
       'extraOptions': []

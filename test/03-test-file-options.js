@@ -21,7 +21,7 @@ describe('Custom base theme with custom paths', function () {
   it('creates expected files', function (done) {
     var expected = [
       // add files you expect to exist here.
-      'tester-oranges.info',
+      'tester_oranges.info',
       'template.php',
       'sasssy/.gitkeep',
       'fonti/.gitkeep',
@@ -33,7 +33,7 @@ describe('Custom base theme with custom paths', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'projectName': 'TeStEr  Oranges',
+      'projectName': 'TesterOranges',
       'baseTheme': 'CUSTOM',
       'customBaseTheme': 'applesauce',
       'advFileOptions': true,

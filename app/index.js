@@ -104,7 +104,7 @@ DrupalThemeGenerator.prototype.askForBase = function () {
 
   this.prompt(prompts, function (props) {
     this.projectName = props.projectName;
-    this.projectSlug = _s.slugify(props.projectName);
+    this.projectSlug = _s.underscored(props.projectName);
     this.baseTheme = props.baseTheme;
 
     // We have a custom base theme, just set it.
@@ -224,11 +224,11 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
     // If they wanted the advanced options, use those.
     if (props.advFileOptions) {
       // TODO: Instead, make sure the input is sanitized already?
-      this.sassDir = _s.slugify(props.sassDir);
-      this.cssDir = _s.slugify(props.cssDir);
-      this.jsDir = _s.slugify(props.jsDir);
-      this.imgDir = _s.slugify(props.imgDir);
-      this.fontsDir = _s.slugify(props.fontsDir);
+      this.sassDir = _s.underscored(props.sassDir);
+      this.cssDir = _s.underscored(props.cssDir);
+      this.jsDir = _s.underscored(props.jsDir);
+      this.imgDir = _s.underscored(props.imgDir);
+      this.fontsDir = _s.underscored(props.fontsDir);
       this.templateDir = props.templateDir;
     }
 
