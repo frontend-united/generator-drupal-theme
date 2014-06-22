@@ -1,5 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var fs = require('fs');
 
 var extras = require('./extras.js');
 
@@ -39,7 +40,6 @@ DrupalThemeExtrasGenerator.prototype.askFor = function () {
     this.prompt(prompts, function (props) {
 
       this.extraOptions = props.extraOptions;
-
       cb();
     }.bind(this));
   }
@@ -49,6 +49,43 @@ DrupalThemeExtrasGenerator.prototype.askFor = function () {
     cb();
   }
 };
+
+DrupalThemeExtrasGenerator.prototype.ensureSlug = function () {
+  var cb = this.async();
+  var self = this;
+
+  if (typeof(this.projectSlug) === "undefined") {
+    // We did not have a .yo-rc.json file, therefore our project slug is not
+    // known. Let's try and make one up.
+    var projectSlug = false;
+
+    fs.readdir('./', function(err, list) {
+      if (err) return cb(err);
+
+      // Go through our list and see if our .info file is there.
+      list.some(function(e, i, a) {
+        var n = e.search('.info');
+        if (n !== -1) {
+          projectSlug = e.substring(0, n);
+          return true;
+        }
+        return false;
+      });
+
+      if (projectSlug === false) {
+        console.log("Error! Could not find a theme's .info file!");
+      }
+      else {
+        self.config.set('projectSlug', projectSlug);
+        self.projectSlug = projectSlug;
+        cb();
+      }
+    });
+  }
+  else {
+    cb();
+  }
+}
 
 DrupalThemeExtrasGenerator.prototype.addTheThings = function () {
   if (this.extraOptions.indexOf('Bower') > -1) {
