@@ -44,7 +44,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           environment: 'production',
-          imagesDir: paths.img . '-min',
+          imagesDir: paths.img + '-min',
           force: true
         }
       }

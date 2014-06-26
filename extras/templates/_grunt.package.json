@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
+    "compass-options": "^0.1.1",
     "grunt": "~0.4.0",
     "grunt-contrib-watch": "~0.4.3",
     "grunt-contrib-compass": "~0.2.0",
