@@ -94,7 +94,7 @@ DrupalThemeExtrasGenerator.prototype.addTheThings = function () {
 
   if (this.extraOptions.indexOf('Gulp') > -1) {
     this.template('_gulp.package.json', 'package.json');
-    this.template('Gulpfile.js', 'Gulpfile.js');
+    this.template('gulpfile.js', 'gulpfile.js');
   }
 
   if (this.extraOptions.indexOf('Grunt') > -1) {
