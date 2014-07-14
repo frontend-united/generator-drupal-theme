@@ -1,4 +1,6 @@
-# Drupal Theme Generator [![Build Status](https://secure.travis-ci.org/frontend-united/generator-drupal-theme.png?branch=master)](https://travis-ci.org/frontend-united/generator-drupal-theme)
+# Drupal Theme Generator 
+
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] ![License MIT][license-image]  [![Downloads][downloads-image]][npm-url]
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -70,3 +72,14 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 MIT
+
+
+[travis-url]: https://travis-ci.org/frontend-united/generator-drupal-theme
+[travis-image]: http://img.shields.io/travis/frontend-united/generator-drupal-theme.svg
+
+[downloads-image]: http://img.shields.io/npm/dm/generator-drupal-theme.svg
+[npm-url]: https://npmjs.org/package/generator-drupal-theme
+[npm-image]: http://img.shields.io/npm/v/generator-drupal-theme.svg
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg
+
