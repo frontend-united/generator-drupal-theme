@@ -1,6 +1,6 @@
 # Drupal Theme Generator 
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [!License][license-image] [![Downloads][downloads-image]][npm-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] ![License MIT][license-image] [![Downloads][downloads-image]][npm-url]
 
 > [Yeoman](http://yeoman.io) generator
 
