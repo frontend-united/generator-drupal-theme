@@ -36,7 +36,7 @@ DrupalThemeAuroraGenerator.prototype.askFor = function () {
     }.bind(this));
   }
   else {
-    // Pull the setings from the stored settings array.
+    // Pull the settings from the stored settings array.
     this.auroraType = this.baseThemeSettings.auroraType;
 
     this.destinationRoot(this.projectSlug);

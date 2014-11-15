@@ -208,7 +208,7 @@ DrupalThemeGenerator.prototype.askForAdvanced = function() {
       type: "input",
       name: "fontsDir",
       message: "Fonts directory?",
-      default: this.jsDir,
+      default: this.fontsDir,
       when: onlyWhen
     },
     {
