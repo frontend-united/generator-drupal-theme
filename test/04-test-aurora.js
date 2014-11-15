@@ -5,7 +5,7 @@ var helpers = require('yeoman-generator').test;
 
 describe('Aurora theme (Corona distribution)', function () {
   // Setting a longer timeout because we want to install gems.
-  this.timeout(30000);
+  this.timeout(60000);
 
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
