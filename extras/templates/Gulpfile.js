@@ -10,6 +10,7 @@ var prefix = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var stripDebug = require('gulp-strip-debug');
+var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 
 // A few config folders that are not included in Compass.
