@@ -62,7 +62,7 @@ gulp.task('compass', function() {
 gulp.task('watch', function () {
   gulp.watch(paths.js + '/**/*.js', ['lint', 'scripts']);
   gulp.watch(paths.sass + '/**/*.scss', ['compass']);
-});i
+});
 
 //////////////////////////////
 // BrowserSync Task
