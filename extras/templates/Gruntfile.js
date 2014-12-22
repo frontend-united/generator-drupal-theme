@@ -1,6 +1,6 @@
 'use strict';
 
-var paths = require('compass-options').paths();
+var paths = require('compass-options').dirs();
 
 module.exports = function (grunt) {
 
