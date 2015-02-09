@@ -274,7 +274,7 @@ DrupalThemeGenerator.prototype.drupal = function () {
   // General theme files.
   this.template('_theme.info', this.projectSlug + '.info');
   this.template('_template.php', 'template.php');
-  this.template('_theme_settings.php', 'theme_settings.php');
+  this.template('_theme_settings.php', 'theme-settings.php');
   this.copy('favicon.ico', 'favicon.ico');
 
   // Compass settings file.
