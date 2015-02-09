@@ -73,6 +73,10 @@ DrupalThemeGenerator.prototype.askForBase = function () {
     );
   }
 
+  if (this.options.baseTheme) {
+    this.baseTheme = this.options.baseTheme;
+  }
+
   var prompts = [
     {
       type: 'string',
@@ -91,6 +95,9 @@ DrupalThemeGenerator.prototype.askForBase = function () {
       message: 'Which base theme would you like to use?',
       choices: baseThemeList,
       default: null,
+      when: function( answers ) {
+        return (this.hasOwnProperty('baseTheme'));
+      }
     },
     {
       type: 'string',
@@ -105,7 +112,9 @@ DrupalThemeGenerator.prototype.askForBase = function () {
   this.prompt(prompts, function (props) {
     this.projectName = props.projectName;
     this.projectSlug = _s.underscored(props.projectName);
-    this.baseTheme = props.baseTheme;
+    if (props.baseTheme) {
+      this.baseTheme = props.baseTheme;
+    }
 
     // We have a custom base theme, just set it.
     if (this.baseTheme === "CUSTOM") {

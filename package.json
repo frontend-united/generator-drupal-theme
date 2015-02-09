@@ -28,7 +28,7 @@
     "drupal-theme"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
+    "yeoman-generator": "~0.18.0",
     "chalk": "~0.4.0",
     "yosay": "^0.1.0",
     "chalk": "~0.4.0",
