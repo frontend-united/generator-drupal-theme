@@ -38,7 +38,7 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
       //       of it breaking there.
       //////////////////////////////
       if (!this.options['skip-install']) {
-        sh.run('bundle install --path .vendor/bundle');
+        sh.run('bundle install --path ./vendor/bundle');
 
         //////////////////////////////
         // If the --skip-compass flag is NOT passed, run compass compile
