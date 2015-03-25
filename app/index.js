@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-var sh = require('execSync');
+var exec = require('sync-exec');
 var _s = require('underscore.string');
 var fs = require('fs');
 
@@ -38,13 +38,13 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
       //       of it breaking there.
       //////////////////////////////
       if (!this.options['skip-install']) {
-        sh.run('bundle install --path .vendor/bundle');
+        exec('bundle install --path .vendor/bundle');
 
         //////////////////////////////
         // If the --skip-compass flag is NOT passed, run compass compile
         //////////////////////////////
         if (!this.options['skip-compass']) {
-          sh.run('bundle exec compass compile');
+          exec('bundle exec compass compile');
         }
       }
 
@@ -52,8 +52,8 @@ var DrupalThemeGenerator = yeoman.generators.Base.extend({
       // If the --git flag is passed, initialize git and add for initial commit
       //////////////////////////////
       if (this.options['git']) {
-        sh.run('git init');
-        sh.run('git add . && git commit -m "Aurora Generation"');
+        exec('git init');
+        exec('git add . && git commit -m "Aurora Generation"');
       }
     });
   }

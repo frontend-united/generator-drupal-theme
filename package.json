@@ -33,7 +33,7 @@
     "yosay": "^0.1.0",
     "chalk": "~0.4.0",
     "underscore.string": "~2.3.3",
-    "execSync": "~1.0.1-pre",
+    "sync-exec": "^0.4.0",
     "rimraf": "~2.2.0"
   },
   "devDependencies": {
