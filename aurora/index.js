@@ -2,7 +2,6 @@
 var yeoman = require('yeoman-generator');
 var rimraf = require('rimraf');
 var path = require('path');
-
 var aurora = require('./Aurora.js');
 
 
@@ -78,20 +77,54 @@ DrupalThemeAuroraGenerator.prototype.doThings = function() {
           this.copy('gitkeep', '' + keep[i] + '/.gitkeep');
         }
         break;
+    case 'aurora stylus':
+      this.directory('aurora_stylus', '.');
+      // Remove no longer needed configuration files
+      rimraf(this.destinationRoot() + '/config.rb', function (err) {
+        cb();
+      });
+      rimraf(this.destinationRoot() + '/Gemfile*', function (err) {
+        cb();
+      });
+      rimraf(this.destinationRoot() + '/.vendor', function (err) {
+        cb();
+      });
+      rimraf(this.destinationRoot() + '/.bundle', function (err) {
+        cb();
+      });
+      rimraf(this.destinationRoot() + '/.ruby-version', function (err) {
+        cb();
+      });
+      rimraf(this.destinationRoot() + '/sass', function (err) {
+        cb();
+      });
+      // Declare panels layouts folder
+      var info = this.destinationRoot() + '/' + this.projectSlug + '.info',
+          file = this.readFileAsString(info);
+
+      file = file + "\n\; ========================================\n"
+                  + "\; Panels\n"
+                  + "\; ========================================\n"
+                  + "plugins[panels][layouts] = panel_layouts";
+
+      this.write(info, file);
+      break;
   }
 
   // Copy the compass config, complete with templating.
   // But first we must remove what is already there.
-  var configpath = path.join(this.destinationRoot() + '/config.rb');
-  var gemfilepath = path.join(this.destinationRoot() + '/Gemfile');
-  rimraf(configpath, function (err) {
-    self.template('_config.rb', 'config.rb');
+  if(this.auroraType != 'aurora_stylus') {
+    var configpath = path.join(this.destinationRoot() + '/config.rb');
+    var gemfilepath = path.join(this.destinationRoot() + '/Gemfile');
+    rimraf(configpath, function (err) {
+      self.template('_config.rb', 'config.rb');
 
-    rimraf(gemfilepath, function (err) {
-      self.copy('Gemfile', 'Gemfile');
-      cb();
+      rimraf(gemfilepath, function (err) {
+        self.copy('Gemfile', 'Gemfile');
+        cb();
+      });
     });
-  });
+  }
 }
 
 module.exports = DrupalThemeAuroraGenerator;

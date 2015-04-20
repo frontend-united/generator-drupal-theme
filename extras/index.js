@@ -9,7 +9,7 @@ var DrupalThemeExtrasGenerator = yeoman.generators.Base.extend({
   init: function () {
 
     this.on('end', function () {
-      if (!this.options['skip-install']) {
+      if (!this.options['skip-install'] && this.auroraType != 'aurora_stylus') {
         var bower = this.extraOptions.indexOf('Bower') > -1 ? true : false;
         var npm = (this.extraOptions.indexOf('Gulp') > -1 || this.extraOptions.indexOf('Grunt') > -1)  ? true : false;
 
