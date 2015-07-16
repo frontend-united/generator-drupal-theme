@@ -1,6 +1,6 @@
 {
   "name": "generator-drupal-theme",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A Yeoman generator to create Drupal themes. This is also build to create sub-themes of Zen, Omega, Aurora and Mothership.",
   "license": "MIT",
   "main": "app/index.js",
